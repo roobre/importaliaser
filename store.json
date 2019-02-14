@@ -1,0 +1,22 @@
+{
+  "config" : {
+    "rootUrl": "https://www.roobre.es",
+    "speculative": true,
+    "speculativeProtocol": "git",
+    "speculativeFormat": "https://github.com/roobre/%s.git"
+  },
+  "aliases" : {
+    "roob.re/goxxy" : {
+      "protocol": "git",
+      "uri": "https://github.com/roobre/goxxy.git"
+    },
+    "roob.re/omemo-wget" : {
+      "protocol": "git",
+      "uri": "https://github.com/roobre/omemo-wget.git"
+    },
+    "roob.re/importaliaser" : {
+      "protocol": "git",
+      "uri": "https://github.com/roobre/importaliaser.git"
+    }
+  }
+}
