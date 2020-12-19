@@ -71,8 +71,7 @@ func (a *Aliaser) Path(w http.ResponseWriter, r *http.Request) {
 			body = fmt.Sprintf(BODY_TEMPLATE, alias.URI)
 		}
 
-		_, _ = fmt.Fprintf(w,
-			HTML_TEMPLATE, name, alias.Protocol, alias.URI, metaRedir, body)
+		_, _ = fmt.Fprintf(w, HTML_TEMPLATE, name, alias.Protocol, alias.URI, metaRedir, body)
 	} else {
 		log.Printf("Unknown alias %s", name)
 		http.NotFound(w, r)
