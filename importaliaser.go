@@ -34,10 +34,9 @@ func (a *Aliaser) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if strings.Trim(r.RequestURI, "/") == "" {
 		a.RootPath(w, r)
 		return
-	} else {
-		a.Path(w, r)
-		return
 	}
+
+	a.Path(w, r)
 }
 
 func (a *Aliaser) RootPath(w http.ResponseWriter, r *http.Request) {
@@ -52,7 +51,8 @@ func (a *Aliaser) RootPath(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *Aliaser) Path(w http.ResponseWriter, r *http.Request) {
-	name := r.Host + "/" + strings.Trim(r.RequestURI, "/")
+	repo := strings.Split(strings.Trim(r.RequestURI, "/"), "/")[0]
+	name := r.Host + "/" + repo
 	conf := a.storer.Config()
 
 	alias, found := a.storer.Alias(name)
@@ -60,7 +60,7 @@ func (a *Aliaser) Path(w http.ResponseWriter, r *http.Request) {
 		found = true
 		alias = Alias{
 			Protocol: conf.SpeculativeProtocol,
-			URI: fmt.Sprintf(conf.SpeculativeFormat, strings.Trim(r.RequestURI, "/")),
+			URI:      fmt.Sprintf(conf.SpeculativeFormat, repo),
 		}
 	}
 
