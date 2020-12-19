@@ -51,7 +51,7 @@ func (a *Aliaser) RootPath(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *Aliaser) Path(w http.ResponseWriter, r *http.Request) {
-	repo := strings.Split(strings.Trim(r.RequestURI, "/"), "/")[0]
+	repo := strings.Split(strings.Trim(r.URL.Path, "/"), "/")[0]
 	name := r.Host + "/" + repo
 	conf := a.storer.Config()
 
